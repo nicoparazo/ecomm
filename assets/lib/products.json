@@ -1,0 +1,50 @@
+[
+    {
+        "name": "puppy1",
+        "price": "18,000",
+        "description": "part border collie part makulit",
+        "image": "..\/assets\/images\/puppy1.jpg"
+    },
+    {
+        "name": "puppy2",
+        "price": "20,000",
+        "description": "Dachshund (cup not included)",
+        "image": "..\/assets\/images\/puppy2.jpg"
+    },
+    {
+        "name": "kitten1",
+        "price": "10,000",
+        "description": "playful SOB",
+        "image": "..\/assets\/images\/kitten1.jpg"
+    },
+    {
+        "name": "kitten2",
+        "price": "12,000",
+        "description": "timid",
+        "image": "..\/assets\/images\/kitten2.jpg"
+    },
+    {
+        "name": "bunny1",
+        "price": "1,000",
+        "description": "rare",
+        "image": "..\/assets\/images\/bunny1.jpg"
+    },
+    {
+        "name": "bunny2",
+        "price": "1,500",
+        "description": "wabbit",
+        "image": "..\/assets\/images\/bunny2.jpg"
+    },
+    {
+        "name": "Tiger",
+        "price": "100000",
+        "description": "matapang",
+        "image": "..\/assets\/images\/tiger.jpg"
+    },
+    {
+        "name": "Lion",
+        "price": "1000000",
+        "description": "matapang",
+        "image": "..\/assets\/images\/lion.jpg"
+    }
+]

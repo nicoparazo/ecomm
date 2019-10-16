@@ -1,0 +1,50 @@
+[
+    {
+        "firstName": "nico",
+        "lastName": "parazo",
+        "email": "nicoparazo@gmail.com",
+        "password": "123456"
+    },
+    {
+        "firstName": "nicole",
+        "lastName": "parazo",
+        "email": "nicole@gmail.com",
+        "password": "7c4a8d09ca3762af61e59520943dc26494f8941b"
+    },
+    {
+        "firstName": "Juan",
+        "lastName": "Dela Cruz",
+        "email": "juandelacruz@band",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    },
+    {
+        "firstName": "Paul",
+        "lastName": "McCartney",
+        "email": "bass@beatles.com",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    },
+    {
+        "firstName": "Ringgo",
+        "lastName": "Starr",
+        "email": "drums@beatles.com",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    },
+    {
+        "firstName": "John",
+        "lastName": "Lennon",
+        "email": "guitar@beatles.com",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    },
+    {
+        "firstName": "George",
+        "lastName": "Harrison",
+        "email": "leadguitar@beatles.com",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    },
+    {
+        "firstName": "Son",
+        "lastName": "Goku",
+        "email": "test@gmail.com",
+        "password": "8cb2237d0679ca88db6464eac60da96345513964"
+    }
+]

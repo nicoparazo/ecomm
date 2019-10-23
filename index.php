@@ -17,7 +17,7 @@
 
  	echo "hello";
  	//header function will ridect to the indicated path
- 	header ('Location: ./views/register.php');
+ 	header ('Location:./views/register.php');
 
  	?>
 	

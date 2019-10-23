@@ -39,14 +39,31 @@
  					</div>
  					<div class="form-group">
  						<label for="email">Email</label>
- 						<input type="text" id="email" name="email" class="form-control">
+ 						<input type="email" id="email" name="email" class="form-control">
  					</div>
+
+ 					<div class="form-group">
+ 						<label for="address">Address</label>
+ 						<input type="text" id="address" name="address" class="form-control">
+ 					</div>
+
+
+ 					<div class="form-group">
+ 						<label for="username">Enter a Username</label>
+ 						<input type="text" id="username" name="username" class="form-control">
+ 					</div>
+
+
+
+
  					<div class="form-group">
  						<label for="password">Password</label>
- 						<input type="password" id="password" name="password" class="form-control">
+ 						<input type="password" id="password" name="password" class="form-control"> 					
+
+
  					</div>
  					<div class="form-group">
- 						<label for="confirm">Password</label>
+ 						<label for="confirm">Confirm Password</label>
  						<input type="password" id="confirm" name="confirmPassword" class="form-control">
  					</div>
 

@@ -28,17 +28,57 @@
 <div class="main container">
 	<h2 class="text-center">Products Dashboard</h2>
 	<div class="row">
+		<div class="col-md-12 text-center">
+		<h2>Sort By: </h2>
+		<ul class="list-group border">
+				<li class="list-group-item">
+					<a href="../controllers/sort.php?sort=asc">
+						Price(Lowest to Highest)
+					</a>
+				</li>
+				<li class="list-group-item">
+					<a href="../controllers/sort.php?sort=desc">
+						price(Highest to Lowest)
+					</a>
+				</li>
+
+			</ul>
+
+		</div>
 		<?php
 		//retreive all the products in products.json as a string
 
-		// var_dump(file_get_contents('../assets/lib/products.json'));
-		$productsJ = file_get_contents('../assets/lib/products.json');
-		//convert to assoc array
-		$products = json_decode($productsJ,true);
-		//var_dump the array
+		// // var_dump(file_get_contents('../assets/lib/products.json'));
+		// $productsJ = file_get_contents('../assets/lib/products.json');
+		// //convert to assoc array
+		// $products = json_decode($productsJ,true);
+		// //var_dump the array
 		// var_dump($products);
 
-		foreach ($products as $product) {
+
+		// extracting infromation from the connected database
+		$product_query = "SELECT * FROM items";
+
+		// var_dump($_SESSION['sort']);
+		// var_dump($product_query);
+
+
+		//sorting
+
+		if(isset($_SESSION['sort'])) {
+			//order by price ASC
+			$product_query .= $_SESSION['sort'];
+		}
+
+
+		//mysqli_query() performs a query to our db that returns //true or fals
+		//syntax: mysqli_query(connection, query to execute)
+		$products_array =mysqli_query($conn, $product_query);
+		// var_dump($products_array);
+
+
+
+		foreach ($products_array as $product) {
 			// var_dump($product);
 			
 		?>			
@@ -55,6 +95,23 @@
 					<p class="card-text"><?= $product['description']; ?></p>
 				</div>
 
+				<div class="card-footer">
+					<form action="../controllers/update_cart.php" method="POST">
+						<input type="number" class="form-control" min="1" value="1" name="item_quantity">
+						<input type="hidden" name="item_id" value=<?= $product['id']; ?> >
+						<button class="btn-secondary btn btn-block add-to-cart">Add To Cart</button>
+
+					</form>
+
+					 
+
+
+					<a href="../controllers/delete_item.php?id=<?=$product['id'];?>" class="btn btn-danger btn-block"> Delete Item</a>
+					<a href="./edit_form.php?id=<?= $product['id']; ?>" class="btn btn-primary btn-block">Edit Item</a>
+
+					
+
+				</div>
 			</div>
 		
 		</div>

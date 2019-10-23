@@ -1,4 +1,5 @@
 <?php session_start();
+	  require_once '../controllers/connection.php';
 
 
 
@@ -28,18 +29,66 @@
 		  <div class="collapse navbar-collapse" id="navbarText">
 		    <ul class="navbar-nav mr-auto">
 		    	<?php
+
+		    if(isset($_SESSION['cart'])) {
+		    	$cart_count = count($_SESSION['cart']);
+
+		    } else {
+		    	$cart_count = 0;
+		    }
+		   
 		    	//isset() function checks if a variable/element has been assigned a value
 		    	//if session email has no assigned value/has not been set.
 		    	//else, display the logout button
+		    // var_dump($_SESSION['user']);
+		    // var_dump($_SESSION['user']['firstname']);//returns the value of the firstname field of the current owner of the $_SESSION['user']
+		    // var_dump($_SESSION['user']['email']);
+		    // var_dump($_SESSION['user']['password']);
 
-		    if(isset($_SESSION['first'])) {
+		     if(isset($_SESSION['user']['firstname'])) {
 
-		    	$username = $_SESSION['first'];
+		    	$username = $_SESSION['user']['firstname'];
+		    	// var_dump($username);
 
 		    }
-		    	
 
-		    	if(!isset($_SESSION['email'])){
+
+		    //issset checks if there is an assigned value for the variable. The confition below
+		    //checks if both a $_SESSION['user'] is set and role_id has a value of 1 or admin
+
+		    if(isset($_SESSION['user'])&&($_SESSION['user']['role_id'])==1) {
+
+
+
+		    		echo "
+		    		 <li class='nav-item active'>
+		        		<a class='nav-link' href='./logout.php'>Log Out</a>
+		      		</li>
+
+		      		<li class='nav-item px-3'>
+		    			<a class='nav-link' href='./gallery.php'>Gallery</a>
+		    		</li>
+
+		      		<li class='nav-item active'>
+		        		<a class='nav-link' href='./add_product.php'>Add Product</a>
+		      		</li>
+
+
+		      		<li class='nav-item'>
+		        		<a class='nav-link' href='#''>Welcome, $username</a>
+		      		</li>
+
+		      		<li class='nav-item'>
+		      			<a class='nav-link' href='./cart.php'>View Cart: $cart_count 
+		      			
+		      			</a>
+		      		</li>
+
+		      		";
+
+		    } else {
+
+		    	if(!isset($_SESSION['user']['email'])){
 		    		echo " 
 		    		<li class='nav-item' px-3>
 		    			<a class='nav-link' href='./register.php'>Register</a>
@@ -58,6 +107,8 @@
 		        		<a class='nav-link' href='#''>Welcome, Guest!</a>
 		      		</li>
 
+
+
 		    		";
 		    	}  else {
 
@@ -66,17 +117,38 @@
 		        		<a class='nav-link' href='./logout.php'>Log Out</a>
 		      		</li>
 
-		      		<li class='nav-item active'>
-		        		<a class='nav-link' href='./add_product.php'>Add Product</a>
-		      		</li>
+		      		<li class='nav-item px-3'>
+		    			<a class='nav-link' href='./gallery.php'>Gallery</a>
+		    		</li>
+
 
 		      		<li class='nav-item'>
 		        		<a class='nav-link' href='#''>Welcome, $username</a>
 		      		</li>
 
+		      	
+		      		
+		      		<li class='nav-item'>
+		      			<a class='nav-link' href='./cart.php'>View Cart: $cart_count 
+		      			
+		      			</a>
+		      		</li>
+
 		      		";
 		      		
 		    	}
+
+
+
+
+		    }
+
+		   
+
+		    	
+
+
+		    	
 
 		    	?>
 

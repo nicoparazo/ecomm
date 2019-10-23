@@ -20,6 +20,9 @@
 					<input type="text" id="productName" class="form-control" name="productName">
 				</div>
 
+
+
+
 				<div class="form-group">
 					<label for="price">Price</label>
 					<input type="number" id="price" class="form-control" name="price">
@@ -28,6 +31,10 @@
 					<label for="description">Description</label>
 					<input type="text" id="description" class="form-control" name="description">
 				</div>
+
+				
+
+
 				<div class="form-group">
 					<label for="image">Image</label>
 					<input type="file" id="image" class="form-control" name="image">

@@ -1,5 +1,7 @@
 <?php
 
+	require './connection.php';
+
 	//PHP has predefined variables which are designed to collect data sent by HTML forms $_POSR and $_GET
 	// superglobal variables simply means that it is a specially pre-defined variable (normally arrays) that can
 	//be accessed in the program.
@@ -20,9 +22,22 @@
 	//sanitize our inputs
 	$fname=htmlspecialchars($_POST['firstName']);
 	$lname=htmlspecialchars($_POST['lastName']);
+	$username= htmlspecialchars($_POST['username']);
 	$email=htmlspecialchars($_POST['email']);
+	$address = htmlspecialchars($_POST['address']);
 	$password=htmlspecialchars($_POST['password']);
 	$confirmPassword=htmlspecialchars($_POST['confirmPassword']);
+	$role_id = 2;
+
+	// $fname="nicolo";
+	// $lname="parazo";
+	// $username= "nicoparazo";
+	// $email="nicoparazo@gmail.com";
+	// $address = "quezon city";
+	// $password="12345";
+	// $confirmPassword="12345";
+	// $role_id = 1;
+
 
 	//check values of the variables that we used to store the user credentials
 	// var_dump($fname);
@@ -30,21 +45,6 @@
 	// var_dump($email);
 	// var_dump($password);
 	// var_dump($confirmPassword);
-
-	if($fname !="" && $lname !="") {
-		echo "<br>Welcome ".$fname." " .$lname;
-
-	} else {
-		echo "<br>Please provide a complete name";
-	}
-
-	if ($email !="") {
-		echo "<br>Your email is: ".$email;
-	} elseif (strpos($email, '@') && strpos($email, '.')) {
-		// echo "Valid Email";
-	} else {
-		echo "<br>Please check your email";
-	}
 
 
 
@@ -64,23 +64,23 @@
 			//file_get_contents() will return the content in a string
 			// file_get_contents(filename that we want to extract)
 
-			$json = file_get_contents("../assets/lib/accounts.json");
+			// $json = file_get_contents("../assets/lib/accounts.json");
 			// var_dump($json);
 
 			//convert the JSON string to a php associative arrays. when the second parameter
 			// is set to true it converts the json string to an assoc array
 
-			$accounts = json_decode($json, true);
+			// $accounts = json_decode($json, true);
 			// var_dump($accounts);
 
 			//form a new assoc array using the sanitized inputs
-			$newUser =["firstName" => $fname, "lastName" =>$lname, "email" =>$email, "password" => $password];
+			// $newUser =["firstName" => $fname, "lastName" =>$lname, "email" =>$email, "password" => $password];
 			// var_dump($newUser);
 
 			//push the content of $newUser to the end of the assoc version of accounts.json()
 			//array_push(array,value to be pushed)
 
-			array_push($accounts, $newUser);
+			// array_push($accounts, $newUser);
 			//should reflect newly inserted data ($newUser)
 			// var_dump($accounts);
 
@@ -88,7 +88,7 @@
 			//fopen(file to be opened, mode of access)
 			//mode of access: w  opens the file for writing/manipulating it
 
-			$to_write = fopen('../assets/lib/accounts.json', 'w');
+			// $to_write = fopen('../assets/lib/accounts.json', 'w');
 
 			//fwrite()writes on the opened file
 			//fwrite(opened file, string to be written)
@@ -97,17 +97,28 @@
 			//JSON_PRETTY_PRINT option adds white spaces that makes JSON 
 			//strings readable
 
-			$x = json_encode($accounts, JSON_PRETTY_PRINT);
+			// $x = json_encode($accounts, JSON_PRETTY_PRINT);
 			// var_dump($x);
 
-			fwrite($to_write, $x);
+			// fwrite($to_write, $x);
 
 			//close the previously open file
-			fclose($to_write);
+			// fclose($to_write);
 
+			$insert_query = "INSERT INTO users(firstname,lastname,username,email,address,role_id,password) VALUES ('$fname','$lname','$username','$email','$address','$role_id','$password')";
+
+			$result = mysqli_query($conn, $insert_query);
+
+			if($result) {
+				echo 'registered Succesfully...';
+				header ('Location: ../views/login.php');
+			}
+			else{
+				echo mysqli_error($conn);
+			}
 			//redirect the user to views/login
 
-			// header ('Location: ../views/register.php');
+			header ('Location: ../views/login.php');
 
 
 
@@ -115,10 +126,31 @@
 
 		} else {
 			echo "<br> passwords did not match";
+			die('connection failed'.mysqli_error($conn));
 		}
 
 	} else {
 		echo "<br> Please check the password fields";
+		die('connection failed'.mysqli_error($conn));
+	}
+
+
+	if($fname !="" && $lname !="") {
+		echo "<br>Welcome ".$fname." " .$lname;
+
+	} else {
+		echo "<br>Please provide a complete name";
+		die('connection failed'.mysqli_error($conn));
+	}
+
+	if ($email !="") {
+		echo "<br>Your email is: ".$email;
+
+	} 
+	else {
+		echo "<br>Please check your email";
+		echo $email;
+		die('connection failed'.mysqli_error($conn));
 	}
 
 	

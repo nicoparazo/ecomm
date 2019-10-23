@@ -1,5 +1,7 @@
 <?php
 
+	require_once './connection.php';
+
 	// var_dump($_POST);
 
 	//sanitize form inputs
@@ -7,6 +9,7 @@
 	$productName = htmlspecialchars($_POST['productName']);
 	$price = htmlspecialchars($_POST['price']);
 	$desc =  htmlspecialchars($_POST['description']);
+	$category_id=1;
 	
 	//check how superglobal $_FILES look
 	//superglobal $_Files in an assoc array that will contain a key equivalent to the name given in our input in the
@@ -30,6 +33,9 @@
 	//pathinfo() will return an assoc array of information regarding the path and file type of the
 	//uploaded file. we are using the PATHINFO_EXTENSION to only return the file extension
 	//syntax: pathinfo(file ro be checked, option)
+
+
+
 
 	$file_type= strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 	var_dump($file_type);
@@ -60,24 +66,24 @@
 	// var_dump($newProduct);
 
 	//return contents of products.jsonm 
-		$json = file_get_contents("../assets/lib/products.json");
+		// $json = file_get_contents("../assets/lib/products.json");
 		// var_dump($json);
-		$allProducts = json_decode($json, true);
+		// $allProducts = json_decode($json, true);
 
-		array_push($allProducts,$newProduct);
+		// array_push($allProducts,$newProduct);
 
-		$to_write = fopen('../assets/lib/products.json', 'w');
+		// $to_write = fopen('../assets/lib/products.json', 'w');
 
-		$y = json_encode($allProducts, JSON_PRETTY_PRINT);
+		// $y = json_encode($allProducts, JSON_PRETTY_PRINT);
 
-		fwrite($to_write, $y);
+		// fwrite($to_write, $y);
 
 			//close the previously open file
-		fclose($to_write);
+		// fclose($to_write);
 
 		//redirect to gallery page
 
-		header ('Location:../views/gallery.php');
+		// header ('Location:../views/gallery.php');
 
 
 	} else {
@@ -88,5 +94,16 @@
 	//create a new assoc array containing th product details
 
 	
+	$new_item_query = "INSERT INTO items(name,price,description,image,category_id) VALUES('$productName','$price','$desc','$final_filepath','$category_id')";
+	// var_dump($new_item_query)";
+	$result = mysqli_query($conn, $new_item_query);
+
+	if($result){
+		echo 'addded successfuly';
+		header ('Location:../views/gallery.php');
+	} else{
+		echo mysqli_error($conn);
+	}
+
 
 ?>

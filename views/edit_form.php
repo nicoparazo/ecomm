@@ -52,11 +52,7 @@ $item = mysqli_fetch_assoc($item_result);
 				<label for="">Item Price: </label>
 				<input type="text" name="item_price" class="form-control" value="<?php echo $item['price']; ?>">
 				<label for="">Description:</label>
-				<textarea type="text" name="description" id="" cols="30" rows="10">
-					
-					<?php echo $item['description']; ?>
-
-				</textarea>
+				<textarea type="text" name="description" id="" cols="30" rows="10"><?php echo $item['description']; ?></textarea>
 				<button type="submit" class="btn btn-primary">Update</button>
 			</form>
 		</div>

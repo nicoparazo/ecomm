@@ -3,6 +3,8 @@
 
 	require_once "../partials/header.php";
 
+	// session_start();
+
 	function getTitle(){
 		return "Gallery Page";
 
@@ -104,10 +106,45 @@
 					</form>
 
 					 
+				<?php
+
+					if(isset($_SESSION['user']['role_id'])) {
+			//order by price ASC
+						
+						$usercheck = $_SESSION['user']['role_id'];
+						if ($usercheck =='1') {
+
+					 	?>
+						<a
+						href="../controllers/delete_item.php?id=<?php echo $product['id'] ?>" 
+						class="btn btn-danger btn-block">
+						Delete Item
+						</a>
+
+						<a 
+
+						href="./edit_form.php?id=<?php echo $product['id']?>"
+						class="btn btn-primary btn-block">
+						Edit Item
+						</a>
+					
+
+					<?php
+		
+
+						} else {
 
 
-					<a href="../controllers/delete_item.php?id=<?=$product['id'];?>" class="btn btn-danger btn-block"> Delete Item</a>
-					<a href="./edit_form.php?id=<?= $product['id']; ?>" class="btn btn-primary btn-block">Edit Item</a>
+					
+						} 
+
+						// echo 'no';
+					}
+
+					// var_dump($usercheck);
+
+					?>
+				
 
 					
 
@@ -116,7 +153,9 @@
 		
 		</div>
 
-		<?php		} ?>
+		<?php		
+
+	} ?>
 	
 
 	</div>
